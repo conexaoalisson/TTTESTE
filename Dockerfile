@@ -12,11 +12,17 @@ COPY . .
 # Build da aplicação
 RUN npm run build
 
+# Verificar se build foi criado
+RUN ls -la /app/dist
+
 # Estágio de produção
 FROM nginx:alpine
 
 # Copiar build
 COPY --from=build /app/dist /usr/share/nginx/html
+
+# Verificar arquivos copiados
+RUN ls -la /usr/share/nginx/html
 
 # Copiar configuração Nginx customizada
 COPY nginx.conf /etc/nginx/conf.d/default.conf
