@@ -1,10 +1,10 @@
-FROM node:18-alpine as build
+FROM node:20-alpine as build
 
 WORKDIR /app
 
 # Copiar package files e instalar dependências
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm ci
 
 # Copiar código fonte
 COPY . .
