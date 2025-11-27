@@ -1,16 +1,109 @@
-# React + Vite
+# Landing Page WHMCS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Landing page moderna e responsiva para venda de WHMCS, construída com React + Vite.
 
-Currently, two official plugins are available:
+## Recursos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Interface moderna com design gradiente
+- Totalmente responsiva
+- Seções: Hero, Features, Pricing, Contact
+- 3 planos de preços configuráveis
+- Otimizado para produção
 
-## React Compiler
+## Deploy com Docker
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Opção 1: Docker Compose (Recomendado)
 
-## Expanding the ESLint configuration
+```bash
+# Clonar repositório
+git clone https://github.com/conexaoalisson/TTTESTE.git
+cd TTTESTE
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Subir aplicação
+docker-compose up -d
+
+# Acessar em http://localhost
+```
+
+### Opção 2: Docker direto
+
+```bash
+# Build da imagem
+docker build -t whmcs-landing .
+
+# Rodar container
+docker run -d -p 80:80 --name whmcs-landing whmcs-landing
+
+# Acessar em http://localhost
+```
+
+### Comandos úteis
+
+```bash
+# Parar containers
+docker-compose down
+
+# Ver logs
+docker-compose logs -f
+
+# Rebuild após mudanças
+docker-compose up -d --build
+
+# Remover tudo
+docker-compose down -v
+```
+
+## Deploy no Easypanel
+
+1. Criar novo serviço (App Service)
+2. Conectar ao repositório: `https://github.com/conexaoalisson/TTTESTE`
+3. Branch: `main`
+4. O Dockerfile será detectado automaticamente
+5. Deploy!
+
+## Desenvolvimento Local (sem Docker)
+
+```bash
+# Instalar dependências
+npm install
+
+# Rodar em modo dev
+npm run dev
+
+# Build para produção
+npm run build
+
+# Preview do build
+npm run preview
+```
+
+## Estrutura do Projeto
+
+```
+TTTESTE/
+├── src/
+│   ├── App.jsx          # Componente principal
+│   ├── App.css          # Estilos da landing page
+│   └── main.jsx         # Entry point
+├── public/              # Assets estáticos
+├── Dockerfile           # Configuração Docker
+├── docker-compose.yml   # Orquestração Docker
+├── nginx.conf           # Configuração Nginx
+└── vite.config.js       # Configuração Vite
+```
+
+## Tecnologias
+
+- React 18
+- Vite
+- CSS3 (Grid, Flexbox, Gradients)
+- Nginx (Alpine)
+- Docker
+
+## Customização
+
+Para alterar cores, textos ou preços, edite o arquivo `src/App.jsx` e `src/App.css`.
+
+## Licença
+
+MIT
